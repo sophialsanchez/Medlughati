@@ -346,7 +346,7 @@ showButtons('inline-block');
           response.text().then(function (text) {
             // do something with the text response 
             console.log(text);
-              parsedText = json.parse(text)
+              parsedText = JSON.parse(text)
               var translationImages = extractImages(parsedText);
               updateVisualImage(translationImages[0], "image-1");
               updateVisualImage(translationImages[1], "image-2");

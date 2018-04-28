@@ -3,5 +3,3 @@ ipython
 rake-nltk
 nltk
 textblob
-urllib
-json

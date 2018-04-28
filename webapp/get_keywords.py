@@ -23,7 +23,6 @@ def sort_phrases(phrases, sentence):
 	order_num = []
 	for phrase in phrases:
 		order_num.append(sentence.find(phrase))
-	print(order_num)
 	return [x for _,x in sorted(zip(order_num,phrases))]
 
 
@@ -31,13 +30,14 @@ def get_keywords(text, print_bool):
 	#sentence_lst = r.split_sentences(text)
 	#print(sentence_lst)
 	sentences = nltk.tokenize.sent_tokenize(example_paragraph)
-	keywords = []
+	keywords = {"ranked": [], "not_ranked": []}
 	for sentence in sentences:
 		r = Rake(stopwords = get_stopwords())
 		r.extract_keywords_from_text(sentence)
 		phrases = r.get_ranked_phrases()
-		keywords.append(phrases)
+		keywords["ranked"].append(phrases)
 		phrases_original_order = sort_phrases(phrases, sentence)
+		keywords["not_ranked"].append(phrases_original_order)
 		if print_bool:
 			print(sentence)
 			print(phrases)
@@ -54,4 +54,4 @@ def get_stopwords():
 	return stopwords
 
 
-get_keywords(example_paragraph, True)
+#get_keywords(example_paragraph, False)

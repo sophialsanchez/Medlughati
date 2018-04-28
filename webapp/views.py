@@ -4,14 +4,20 @@
 import json
 from django.views import View
 from django.http import HttpResponse
+from webapp import get_keywords, translate
 
 class MainEndport(View):
 
 	def post(self, request):
 
-		print(request.POST) # it's a dictionary
-
+		#print(request.POST['input_text'])
 		response_data = {}
-		response_data['example_key'] = "Example content"
+		#text = translate.translate(request.POST['input_text'], request.POST['input_language'], request.POST['output_language'])
+		text = "I have a really really big headache yo."
+		keywords = get_keywords.get_keywords(text, False)
+		images = "lala"
+		response_data['translation'] = {"text": text, "keywords": keywords, "images": images}
 
 		return HttpResponse(json.dumps(response_data), content_type="application/json")
+
+#curl -d "input_text=I woke up and my head hurt.&input_language=arabic&output_language=english" -X POST http://localhost:8000/api/

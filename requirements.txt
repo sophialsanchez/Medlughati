@@ -1,2 +1,5 @@
 django==2.0.4
 ipython
+rake-nltk
+nltk
+textblob

@@ -19,6 +19,13 @@ I had major surgery on my throat yesterday.
 My child has been feeling sick for a week, and I'm not sure what's wrong with her.
 """
 
+def sort_phrases(phrases, sentence):
+	order_num = []
+	for phrase in phrases:
+		order_num.append(sentence.find(phrase))
+	print(order_num)
+	return [x for _,x in sorted(zip(order_num,phrases))]
+
 
 def get_keywords(text, print_bool):
 	#sentence_lst = r.split_sentences(text)
@@ -30,9 +37,11 @@ def get_keywords(text, print_bool):
 		r.extract_keywords_from_text(sentence)
 		phrases = r.get_ranked_phrases()
 		keywords.append(phrases)
+		phrases_original_order = sort_phrases(phrases, sentence)
 		if print_bool:
 			print(sentence)
 			print(phrases)
+			print(phrases_original_order)
 			print('')
 	
 	return keywords

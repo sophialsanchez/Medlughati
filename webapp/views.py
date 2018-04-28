@@ -24,7 +24,7 @@ class MainEndport(View):
 		text = translate.translate(request.POST['input_text'], request.POST['input_language'], request.POST['output_language'])
 		#text = "I have a really really big headache yo."
 		keywords = get_keywords.get_keywords(text, False)
-		images = Pics.all_words_to_pics(keywords["not_ranked"], 3)
+		images = Pics.all_words_to_pics(keywords["not_ranked"])
 		response_data['translation'] = {"text": str(text), "keywords": keywords, "images": images}
 
 		print("output:", response_data)

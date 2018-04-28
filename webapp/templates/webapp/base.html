@@ -26,7 +26,7 @@
     <link href="https://www.google.com/intl/en/chrome/assets/common/css/chrome.min.css" rel="stylesheet">
     <style>
 #info {
-    font-size: 20px;
+    font-size: 16px;
     }
     #div_start {
     float: none;
@@ -35,20 +35,22 @@
     text-decoration: none
     }
     #results {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
     border: 1px solid #ddd;
     padding: 15px;
-    text-align: left;
-    min-height: 100px;
+    text-align: right;
+    min-height: 120px;
+    min-width: 40px;
     }
     #translation_container {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
     border: 1px solid #ddd;
     padding: 15px;
     text-align: left;
     min-height: 80px;
+    min-width: 80px;
     }
     #start_button {
     border: 0;
@@ -97,20 +99,20 @@ a.c1 {font-weight: normal;}
       <div class="compact marquee">
         
         <div id="container" style="display: flex">
-            <div id="images_containers">
+            <div id="images_containers" padding=5px;>
                 <div>
-                    <img src="https://i1.wp.com/www.homenaturalcures.com/wp-content/uploads/Chest-pain.jpg" style="width:80px;height:50px;" id="image-1"/>
+                    <img src="https://i1.wp.com/www.homenaturalcures.com/wp-content/uploads/Chest-pain.jpg" style="width:80px;height:50px;" id="image-1" margin=5px/>
                 </div>
                 <div>
-                    <img src="https://i1.wp.com/www.homenaturalcures.com/wp-content/uploads/Chest-pain.jpg" style="width:80px;height:50px;" id="image-2"/>
+                    <img src="https://i1.wp.com/www.homenaturalcures.com/wp-content/uploads/Chest-pain.jpg" style="width:80px;height:50px;" id="image-2" margin=5px/>
                 </div>
                 <div>
-                    <img src="https://i1.wp.com/www.homenaturalcures.com/wp-content/uploads/Chest-pain.jpg" style="width:80px;height:50px;" id="image-3"/>
+                    <img src="https://i1.wp.com/www.homenaturalcures.com/wp-content/uploads/Chest-pain.jpg" style="width:80px;height:50px;" id="image-3" margin=5px/>
                 </div>
             </div>
             <div id="results_container">
 
-                <div id="results" style="min-width: 250px">
+                <div id="results" style="min-width: 200px">
                   <span class="final" id="final_span"></span> <span class="interim" id=
                   "interim_span"></span>
                 </div>
@@ -155,8 +157,9 @@ a.c1 {font-weight: normal;}
                   <button id="start_button" onclick="startButton(event)"><img alt="Start" id="start_img"
                   src="https://www.google.com/intl/en/chrome/assets/common/images/content/mic.gif"></button>
            </div>
-          <div id="translation_container">
-              <input type="text" name="translatedText" placeholder="Translated texts" size="200">
+          <div id="translation_container" style="min-width: 160px">
+              <input type="text" name="translatedText" placeholder="Translated texts" size="40">
+              <p id="final_translation"></p>
           </div>
           <div id="change_page_button" style="display: flex">
           <button class="button" id="copy_button" onclick="copyButton()">Home</button>
@@ -172,12 +175,12 @@ a.c1 {font-weight: normal;}
       </div>
     </div><script src="https://www.google.com/intl/en/chrome/assets/common/js/chrome.min.js">
 </script> <script>
-var chrmMenuBar = new chrm.ui.MenuBar();
-      chrmMenuBar.decorate('nav');
-      var chrmLogo = new chrm.ui.Logo('logo');
-
-      var chrmscroll = new chrm.ui.SmoothScroll('scroll');
-      chrmscroll.init();
+//var chrmMenuBar = new chrm.ui.MenuBar();
+//      chrmMenuBar.decorate('nav');
+//      var chrmLogo = new chrm.ui.Logo('logo');
+//
+//      var chrmscroll = new chrm.ui.SmoothScroll('scroll');
+//      chrmscroll.init();
 
 
 
@@ -205,18 +208,18 @@ var langs =
 [
 
   ['Arab' ,           ['ar-JO']],
-  ['English',         ['en-AU', 'Australia'],
-                      ['en-CA', 'Canada'],
-                      ['en-IN', 'India'],
-                      ['en-KE', 'Kenya'],
-                      ['en-TZ', 'Tanzania'],
-                      ['en-GH', 'Ghana'],
-                      ['en-NZ', 'New Zealand'],
-                      ['en-NG', 'Nigeria'],
-                      ['en-ZA', 'South Africa'],
-                      ['en-PH', 'Philippines'],
-                      ['en-GB', 'United Kingdom'],
-                      ['en-US', 'United States']],
+//  ['English',         ['en-AU', 'Australia'],
+//                      ['en-CA', 'Canada'],
+//                      ['en-IN', 'India'],
+//                      ['en-KE', 'Kenya'],
+//                      ['en-TZ', 'Tanzania'],
+//                      ['en-GH', 'Ghana'],
+//                      ['en-NZ', 'New Zealand'],
+//                      ['en-NG', 'Nigeria'],
+//                      ['en-ZA', 'South Africa'],
+//                      ['en-PH', 'Philippines'],
+//                      ['en-GB', 'United Kingdom'],
+//                      ['en-US', 'United States']],
 
 
 ];
@@ -325,11 +328,13 @@ if (!('webkitSpeechRecognition' in window)) {
           response.text().then(function (text) {
             // do something with the text response 
             console.log(text);
-//              parsedText = json.parse(text)
-//              var images = extractImages(parsedText[trans][]);
-//              updateVisualImage(img[0], "image-1");
-//              updateVisualImage(img[1], "image-2");
-//              updateVisualImage(img[2], "image-3");
+              parsedText = json.parse(text)
+              var translationImages = extractImages(parsedText);
+              updateVisualImage(translationImages[0], "image-1");
+              updateVisualImage(translationImages[1], "image-2");
+              updateVisualImage(translationImages[2], "image-3");
+              var translationString = extractTranslation(parsedText);
+              document.getElementById("final_translation").innerHTML = translationString;
           });
         })
 
@@ -348,6 +353,24 @@ if (!('webkitSpeechRecognition' in window)) {
   };
 }
 
+function extractImages(response) {
+  return response.translations.images;
+}      
+
+function extractTranslation(response) {
+  return response.translations.text;
+}
+
+function updateVisualImage(soruceImageUlr, id) {
+    if  (soruceImageUlr == "") {
+        var imageCountainer = html.getElemetnById(id);
+        imageCountainer.visiblev = false;
+        return;
+    }
+    var imageCountainer = html.getElemetnById(id);
+    imageContauner.src = soruceImageUlr
+}
+      
 function upgrade() {
   start_button.style.visibility = 'hidden';
   showInfo('info_upgrade');

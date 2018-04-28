@@ -327,7 +327,17 @@ showButtons('inline-block');
       if (event.results[i].isFinal) {
         final_transcript += event.results[i][0].transcript;
         console.log("out final" + final_transcript);
-
+        
+//          fetch("http://localhost:8000/api/", {
+//          method:"POST"
+//        , body:new URLSearchParams("input_text="+"عملت عمليه جراحيه الاسبوع الماضي"+"&input_language=ar&output_language=en")
+//        }).then(function(response) {
+//          response.text().then(function (text) {
+//            // do something with the text response
+//            console.log(text);
+//          });
+//        })
+          
         fetch("http://localhost:8000/api/", {
           method:"POST"
         , body: new URLSearchParams("input_text="+final_transcript+"&input_language=ar&output_language=en")

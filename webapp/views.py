@@ -16,7 +16,7 @@ class MainEndport(View):
 		#text = "I have a really really big headache yo."
 		keywords = get_keywords.get_keywords(text, False)
 		images = Pics.all_words_to_pics(keywords["not_ranked"], 3)
-		response_data['translation'] = {"text": text, "keywords": keywords, "images": images}
+		response_data['translation'] = {"text": str(text), "keywords": keywords, "images": images}
 
 		return HttpResponse(json.dumps(response_data), content_type="application/json")
 

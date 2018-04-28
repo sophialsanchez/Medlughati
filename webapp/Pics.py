@@ -1,4 +1,4 @@
-import urllib
+from urllib import request
 import json
 
 
@@ -7,7 +7,7 @@ import json
 ##n: number of pics
 def word_to_pics(word, n):
    array= []
-   rawData = urllib.urlopen('https://www.googleapis.com/customsearch/v1?key=AIzaSyAvlXs6UPjILP-KW2kU9DTRfRWn1VIbqso&cx=005548162878739948931:tn-uu7o72gg&searchType=image&safe=high&q='+word).read()
+   rawData = request.urlopen('https://www.googleapis.com/customsearch/v1?key=AIzaSyAvlXs6UPjILP-KW2kU9DTRfRWn1VIbqso&cx=005548162878739948931:tn-uu7o72gg&searchType=image&safe=high&q='+word).read()
    jsonData = json.loads(rawData)
    for i in range(0,n):
       array.append(jsonData['items'][i]['link'])

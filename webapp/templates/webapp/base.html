@@ -61,9 +61,9 @@ new gweb.analytics.AutoTrack({
     color: black;
     padding-right: 3px;
     }
-    .button {
+    <--.button {
     display: none;
-    }
+    }-->
     .marquee {
     margin: 20px auto;
     }
@@ -79,7 +79,7 @@ new gweb.analytics.AutoTrack({
     }
 
     #copy > div {
-    display: none;
+    display: none; 
     margin: 0 70px;
     }
     </style>
@@ -138,7 +138,7 @@ a.c1 {font-weight: normal;}
           "interim_span"></span>
         </div>
         <div id="copy">
-          <button class="button" id="copy_button" onclick="copyButton()">Copy and Paste</button>
+          <button class="button" id="copy_button" onclick="copyButton()">Patient</button>
           <div id="copy_info">
             <p>
               Press Control-C to copy text.
@@ -146,8 +146,7 @@ a.c1 {font-weight: normal;}
             <p>
               (Command-C on Mac.)
             </p>
-          </div><button class="button" id="email_button" onclick="emailButton()">Create
-          Email</button>
+          </div><button class="button" id="email_button" onclick="emailButton()">Doctor</button>
           <div id="email_info">
             <p>
               Text sent to default email application.
@@ -389,14 +388,14 @@ function showInfo(s) {
 
 var current_style;
 function showButtons(style) {
-  if (style == current_style) {
-    return;
-  }
-  current_style = style;
-  copy_button.style.display = style;
-  email_button.style.display = style;
-  copy_info.style.display = 'none';
-  email_info.style.display = 'none';
+//  if (style == current_style) {
+//    return;
+//  }
+//  current_style = style;
+//  copy_button.style.display = style;
+//  email_button.style.display = style;
+//  copy_info.style.display = 'none';
+//  email_info.style.display = 'none';
 }
     </script>
   </body>

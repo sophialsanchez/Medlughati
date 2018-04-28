@@ -299,6 +299,11 @@ if (!('webkitSpeechRecognition' in window)) {
       } else {
         interim_transcript += event.results[i][0].transcript;
         console.log("out" + interim_transcript);
+
+        fetch("http://localhost:8000/api/", {
+          method:"POST"
+        , body:new URLSearchParams("input_text="+interim_transcript)
+        })
       }
     }
     final_transcript = capitalize(final_transcript);

@@ -40,7 +40,7 @@
     border: 1px solid #ddd;
     padding: 15px;
     text-align: left;
-    min-height: 180px;
+    min-height: 100px;
     }
     #translation_container {
     font-size: 18px;
@@ -48,7 +48,7 @@
     border: 1px solid #ddd;
     padding: 15px;
     text-align: left;
-    min-height: 100px;
+    min-height: 80px;
     }
     #start_button {
     border: 0;
@@ -62,9 +62,6 @@
     color: black;
     padding-right: 3px;
     }
-    <--.button {
-    display: none;
-    }-->
     .marquee {
     margin: 20px auto;
     }
@@ -98,7 +95,30 @@ a.c1 {font-weight: normal;}
         </div>
       </div>
       <div class="compact marquee">
-        <div id="info">
+        
+        <div id="container" style="display: flex">
+            <div id="images_containers">
+                <div>
+                    <img src="https://i1.wp.com/www.homenaturalcures.com/wp-content/uploads/Chest-pain.jpg" style="width:80px;height:50px;" id="image-1"/>
+                </div>
+                <div>
+                    <img src="https://i1.wp.com/www.homenaturalcures.com/wp-content/uploads/Chest-pain.jpg" style="width:80px;height:50px;" id="image-2"/>
+                </div>
+                <div>
+                    <img src="https://i1.wp.com/www.homenaturalcures.com/wp-content/uploads/Chest-pain.jpg" style="width:80px;height:50px;" id="image-3"/>
+                </div>
+            </div>
+            <div id="results_container">
+
+                <div id="results" style="min-width: 250px">
+                  <span class="final" id="final_span"></span> <span class="interim" id=
+                  "interim_span"></span>
+                </div>
+            </div>
+        </div>
+
+        
+<div id="info">
           <p id="info_start">
             Click on the microphone icon and begin speaking for as long as you like.
           </p>
@@ -130,53 +150,7 @@ a.c1 {font-weight: normal;}
             "//www.google.com/chrome">Chrome</a> version 25 or later.
           </p>
         </div>
-        <div id="container" style="display: flex">
-            <div id="images_containers">
-                <div>
-                    <img src="https://i1.wp.com/www.homenaturalcures.com/wp-content/uploads/Chest-pain.jpg" style="width:60px;height:60px;" id="image-1"/>
-                </div>
-                <div>
-                    <img src="https://i1.wp.com/www.homenaturalcures.com/wp-content/uploads/Chest-pain.jpg" style="width:60px;height:60px;" id="image-2"/>
-                </div>
-                <div>
-                    <img src="https://i1.wp.com/www.homenaturalcures.com/wp-content/uploads/Chest-pain.jpg" style="width:60px;height:60px;" id="image-3"/>
-                </div>
-            </div>
-            <div id="results_container">
-
-                <div id="results" style="min-width: 250px">
-                  <span class="final" id="final_span"></span> <span class="interim" id=
-                  "interim_span"></span>
-                </div>
-            </div>
-        </div>
-
-        <div id="copy">
-          <button class="button" id="copy_button" onclick="copyButton()">Patient</button>
-
-          <div id="copy_info">
-            <p>
-              Press Control-C to copy text.
-            </p>
-            <p>
-              (Command-C on Mac.)
-            </p>
-          </div><button class="button" id="email_button" onclick="emailButton()">Doctor</button>
-          <div id="email_info">
-            <p>
-              Text sent to default email application.
-            </p>
-            <p>
-              (See chrome://settings/handlers to change.)
-            </p>
-          </div>
-        </div>
-
-        <div class="compact marquee" id="div_language">
-          <select id="select_language" onchange="updateCountry()">
-            </select>&nbsp;&nbsp; <select id="select_dialect">
-            </select>
-        </div>
+        
            <div id="div_start">
                   <button id="start_button" onclick="startButton(event)"><img alt="Start" id="start_img"
                   src="https://www.google.com/intl/en/chrome/assets/common/images/content/mic.gif"></button>
@@ -184,6 +158,17 @@ a.c1 {font-weight: normal;}
           <div id="translation_container">
               <input type="text" name="translatedText" placeholder="Translated texts" size="200">
           </div>
+          <div id="change_page_button" style="display: flex">
+          <button class="button" id="copy_button" onclick="copyButton()">Home</button>
+
+
+        <div class="compact marquee" id="div_language">
+          <select id="select_language" onchange="updateCountry()">
+            </select>&nbsp;&nbsp; <select id="select_dialect">
+            </select>
+        </div><button class="button" id="email_button" onclick="emailButton()">Doctor</button>
+
+        </div>
       </div>
     </div><script src="https://www.google.com/intl/en/chrome/assets/common/js/chrome.min.js">
 </script> <script>

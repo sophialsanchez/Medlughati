@@ -61,9 +61,9 @@ new gweb.analytics.AutoTrack({
     color: black;
     padding-right: 3px;
     }
-    .button {
+    <--.button {
     display: none;
-    }
+    }-->
     .marquee {
     margin: 20px auto;
     }
@@ -79,7 +79,7 @@ new gweb.analytics.AutoTrack({
     }
 
     #copy > div {
-    display: none;
+    display: none; 
     margin: 0 70px;
     }
     </style>
@@ -88,11 +88,11 @@ a.c1 {font-weight: normal;}
     </style>
   </head>
   <body class="" id="grid">
-    <div class="browser-landing" id="main">
+    <div class="browser-landing" idf="main">
       <div class="compact marquee-stacked" id="marquee">
         <div class="marquee-copy">
           <h1>
-            <a class="c1" href="http://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html">Medlughati</a> Demonstration
+            <a class="c1" href="http://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html">Medlighati</a> Demonstration
           </h1>
         </div>
       </div>
@@ -139,6 +139,7 @@ a.c1 {font-weight: normal;}
         </div>
         <div id="copy">
           <button class="button" id="copy_button" onclick="copyButton()">Patient</button>
+
           <div id="copy_info">
             <p>
               Press Control-C to copy text.
@@ -197,6 +198,7 @@ var langs =
 [
 
   ['Arab' ,['ar-JO']],
+
 
 ];
 
@@ -391,14 +393,14 @@ function showInfo(s) {
 
 var current_style;
 function showButtons(style) {
-  if (style == current_style) {
-    return;
-  }
-  current_style = style;
-  copy_button.style.display = style;
-  email_button.style.display = style;
-  copy_info.style.display = 'none';
-  email_info.style.display = 'none';
+//  if (style == current_style) {
+//    return;
+//  }
+//  current_style = style;
+//  copy_button.style.display = style;
+//  email_button.style.display = style;
+//  copy_info.style.display = 'none';
+//  email_info.style.display = 'none';
 }
     </script>
   </body>

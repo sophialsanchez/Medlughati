@@ -259,6 +259,7 @@ var start_timestamp;
 if (!('webkitSpeechRecognition' in window)) {
   upgrade();
 } else {
+showButtons('inline-block');
   start_button.style.display = 'inline-block';
   var recognition = new webkitSpeechRecognition();
   recognition.continuous = true;
@@ -436,9 +437,9 @@ function copyButton() {
     recognizing = false;
     recognition.stop();
   }
-  copy_button.style.display = 'none';
-  copy_info.style.display = 'inline-block';
-  showInfo('');
+  //copy_button.style.display = 'none';
+  //copy_info.style.display = 'inline-block';
+  //showInfo('');
 }
 
 function emailButton() {
@@ -447,11 +448,11 @@ function emailButton() {
     recognizing = false;
     recognition.stop();
   } else {
-    createEmail();
+   // createEmail();
   }
-  email_button.style.display = 'none';
-  email_info.style.display = 'inline-block';
-  showInfo('');
+  //email_button.style.display = 'none';
+  //email_info.style.display = 'inline-block';
+  //showInfo('');
 }
 
 function startButton(event) {
@@ -480,7 +481,7 @@ function showInfo(s) {
     }
     info.style.visibility = 'visible';
   } else {
-    info.style.visibility = 'hidden';
+    //info.style.visibility = 'hidden';
   }
 }
 

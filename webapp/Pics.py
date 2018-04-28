@@ -28,7 +28,8 @@ def all_words_to_pics(words_lst, n):
 	for sentence_words in words_lst:
 		sentence_arr = []
 		for word in sentence_words:
-			word_arr = word_to_pics(word, n)
+			#word_arr = word_to_pics(word, n)
+			word_arr = "https://i.ytimg.com/vi/m5d1FlSeF-M/maxresdefault.jpg"
 			sentence_arr.append(word_arr)
 		pics.append(sentence_arr)
 

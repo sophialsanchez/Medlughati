@@ -1,0 +1,61 @@
+body {
+	background-color: #e6e6ea;
+font-family: 'Amiri', serif;
+}
+
+.row_first {
+	border-top: 1px solid #6D6F6D;
+}
+
+.row {
+	background-color: #f4f4f8;
+	padding: 25px;
+	font-size: 25px;
+	margin: 0 auto;
+	border-bottom: 1px solid #6D6F6D;
+
+}
+
+.img-fluid {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+    height: auto;
+}
+
+img {
+	width: 100px;
+	height: 100px;
+	min-height: 100px;
+    max-height: auto;
+    min-width: 100px;
+    max-height: auto;
+}
+
+.logo > img {
+	width: 150px;
+}
+
+.icons {
+	margin: 0 auto;
+	width:650px;
+}
+.microphone, .doctor, .home {
+	float:left;
+	margin-left: 50px;
+	margin-right: 50px;
+}
+
+.microphone img {
+	height:125px;
+	width:125px;
+}
+
+.container {
+	min-width: 100%;
+	padding:0px;
+}
+
+.footer {
+	overflow: hidden; position: relative;
+}
+

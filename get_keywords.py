@@ -26,7 +26,7 @@ def get_keywords(text, print_bool):
 	sentences = nltk.tokenize.sent_tokenize(example_paragraph)
 	keywords = []
 	for sentence in sentences:
-		r = Rake()
+		r = Rake(stopwords = get_stopwords())
 		r.extract_keywords_from_text(sentence)
 		phrases = r.get_ranked_phrases()
 		keywords.append(phrases)
@@ -36,5 +36,13 @@ def get_keywords(text, print_bool):
 			print('')
 	
 	return keywords
+
+
+def get_stopwords():
+	stopwords = nltk.corpus.stopwords.words('english')
+	newStopWords = ['really']
+	stopwords.extend(newStopWords)
+	return stopwords
+
 
 get_keywords(example_paragraph, True)

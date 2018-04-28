@@ -348,9 +348,10 @@ showButtons('inline-block');
             console.log(text);
               parsedText = JSON.parse(text)
               var translationImages = extractImages(parsedText);
-              updateVisualImage(translationImages[0], "image-1");
-              updateVisualImage(translationImages[1], "image-2");
-              updateVisualImage(translationImages[2], "image-3");
+              console.log(translationImages);
+              updateVisualImage(translationImages[0][0], "image-1");
+              updateVisualImage(translationImages[0][1], "image-2");
+              updateVisualImage(translationImages[0][2], "image-3");
               var translationString = extractTranslation(parsedText);
               document.getElementById("final_translation").innerHTML = translationString;
           });
@@ -372,21 +373,21 @@ showButtons('inline-block');
 }
 
 function extractImages(response) {
-  return response.translations.images;
+  return response.translation.images;
 }      
 
 function extractTranslation(response) {
-  return response.translations.text;
+  return response.translation.text;
 }
 
 function updateVisualImage(soruceImageUlr, id) {
     if  (soruceImageUlr == "") {
-        var imageCountainer = html.getElemetnById(id);
-        imageCountainer.visiblev = false;
+        var imageContainer = document.getElementById(id);
+        imageCountainer.visible = false;
         return;
     }
-    var imageCountainer = html.getElemetnById(id);
-    imageContauner.src = soruceImageUlr
+    var imageContainer = document.getElementById(id);
+    imageContainer.src = soruceImageUlr
 }
       
 function upgrade() {

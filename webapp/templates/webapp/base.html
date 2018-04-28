@@ -103,15 +103,23 @@ a.c1 {font-weight: normal;}
   </head>
   <body class="" id="grid">
     <div class="browser-landing" idf="main">
-      <div class="compact marquee-stacked" id="marquee">
+    <!-- title: Medlughati Demo /-->
+      <div class="compact marquee-stacked" id="marquee"
         <div class="marquee-copy">
           <h1>
             <a class="c1" href="http://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html">Medlughati</a> Demonstration
           </h1>
         </div>
-      </div>
+      </div> 
+
       <div class="compact marquee">
-        
+        <div id="results_container">
+
+                <div id="results" style="min-width: 200px">
+                  <span class="final" id="final_span"></span> <span class="interim" id=
+                  "interim_span"></span>
+                </div>
+            </div>
         <div id="container" style="display: flex">
             <div id="images_containers" padding=5px;>
                 <div>
@@ -124,13 +132,7 @@ a.c1 {font-weight: normal;}
                     <img src="https://i1.wp.com/www.homenaturalcures.com/wp-content/uploads/Chest-pain.jpg" style="width:100px;height:60px;" id="image-3" margin=10px/>
                 </div>
             </div>
-            <div id="results_container">
-
-                <div id="results" style="min-width: 200px">
-                  <span class="final" id="final_span"></span> <span class="interim" id=
-                  "interim_span"></span>
-                </div>
-            </div>
+            
         </div>
 
         
@@ -214,7 +216,7 @@ a.c1 {font-weight: normal;}
 var langs =
 [
 
-  ['Arab' ,           ['ar-SY']],
+  ['Arab' ,           ['ar-JO']],
   ['English',         ['en-AU', 'Australia'],
                       ['en-CA', 'Canada'],
                       ['en-IN', 'India'],

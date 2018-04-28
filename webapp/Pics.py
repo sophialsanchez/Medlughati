@@ -5,7 +5,7 @@ import json
 ## parameters:
 ##word: the phrase to be converted to pics
 ##n: number of pics
-def wordToPics(word, n):
+def word_to_pics(word, n):
    array= []
    rawData = urllib.urlopen('https://www.googleapis.com/customsearch/v1?key=AIzaSyAvlXs6UPjILP-KW2kU9DTRfRWn1VIbqso&cx=005548162878739948931:tn-uu7o72gg&searchType=image&safe=high&q='+word).read()
    jsonData = json.loads(rawData)
@@ -14,6 +14,16 @@ def wordToPics(word, n):
 
    return array
 
+def all_words_to_pics(words_lst, n):
+	pics = []
+	for sentence_words in words_lst:
+		sentence_arr = []
+		for word in sentence_words:
+			word_arr = word_to_pics(word, n)
+			sentence_arr.append(word_arr)
+		pics.append(sentence_arr)
 
-word = "headache"
-print wordToPics(word,3)
+	return pics
+
+# word = "headache"
+# print wordToPics(word,3)

@@ -28,6 +28,7 @@ def sort_phrases(phrases, sentence):
 
 def get_keywords(text, print_bool):
 	text = str(text)
+	print(text)
 	sentences = nltk.tokenize.sent_tokenize(text)
 	keywords = {"ranked": [], "not_ranked": []}
 	for sentence in sentences:

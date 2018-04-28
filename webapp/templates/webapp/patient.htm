@@ -1,16 +1,8 @@
-
 <!DOCTYPE html>
 <html class="no-js consumer" lang="en">
   <head>
 
     <script>
-        
-        <button id="ajaxButton" type="button">Make a request</button>
-
-
-
-
-      
 (function(e, p){
     var m = location.href.match(/platform=(win8|win|mac|linux|cros)/);
     e.id = (m && m[1]) ||
@@ -136,24 +128,16 @@ a.c1 {font-weight: normal;}
             "//www.google.com/chrome">Chrome</a> version 25 or later.
           </p>
         </div>
-        <div id="container" style="display: flex">
+        <div id="container">
             <div id="images_containers">
-                <div>
-                    <img src="https://i1.wp.com/www.homenaturalcures.com/wp-content/uploads/Chest-pain.jpg" style="width:60px;height:60px;"/>
-                </div>
-                <div>
-                    <img src="https://i1.wp.com/www.homenaturalcures.com/wp-content/uploads/Chest-pain.jpg" style="width:60px;height:60px;"/>
-                </div>
-                <div>
-                    <img src="https://i1.wp.com/www.homenaturalcures.com/wp-content/uploads/Chest-pain.jpg" style="width:60px;height:60px;"/>
-                </div>
+                Hello World!
             </div>
             <div id="results_container">
                 <div id="div_start">
                   <button id="start_button" onclick="startButton(event)"><img alt="Start" id="start_img"
                   src="https://www.google.com/intl/en/chrome/assets/common/images/content/mic.gif"></button>
                 </div>
-                <div id="results" style="min-width: 250px">
+                <div id="results">
                   <span class="final" id="final_span"></span> <span class="interim" id=
                   "interim_span"></span>
                 </div>
@@ -264,7 +248,6 @@ var start_timestamp;
 if (!('webkitSpeechRecognition' in window)) {
   upgrade();
 } else {
-showButtons('inline-block');
   start_button.style.display = 'inline-block';
   var recognition = new webkitSpeechRecognition();
   recognition.continuous = true;
@@ -332,20 +315,8 @@ showButtons('inline-block');
       if (event.results[i].isFinal) {
         final_transcript += event.results[i][0].transcript;
         console.log("out final" + final_transcript);
-
-        fetch("http://localhost:8000/api/", {
-          method:"POST"
-        , body:new URLSearchParams("input_text="+final_transcript+"&input_language=ar&output_language=en")
-        }).then(function(response) {
-          response.text().then(function (text) {
-            // do something with the text response 
-            console.log(text);
-          });
-        })
-
       } else {
         interim_transcript += event.results[i][0].transcript;
-        to_translate = interim_transcript;
         console.log("out" + interim_transcript);
       }
     }
@@ -374,33 +345,6 @@ function capitalize(s) {
   return s.replace(first_char, function(m) { return m.toUpperCase(); });
 }
 
-      
-(function() {
-  var httpRequest;
-
-  function makeRequest() {
-    httpRequest = new XMLHttpRequest();
-
-    if (!httpRequest) {
-      alert('Giving up :( Cannot create an XMLHTTP instance');
-      return false;
-    }
-    httpRequest.onreadystatechange = alertContents;
-    httpRequest.open('GE', 'test.html');
-    httpRequest.send();
-  }
-
-  function alertContents() {
-    if (httpRequest.readyState === XMLHttpRequest.DONE) {
-      if (httpRequest.status === 200) {
-        alert(httpRequest.responseText);
-      } else {
-        alert('There was a problem with the request.');
-      }
-    }
-  }
-})();      
-      
 function createEmail() {
   var n = final_transcript.indexOf('\n');
   if (n < 0 || n >= 80) {
@@ -416,9 +360,9 @@ function copyButton() {
     recognizing = false;
     recognition.stop();
   }
-  //copy_button.style.display = 'none';
-  //copy_info.style.display = 'inline-block';
-  //showInfo('');
+  copy_button.style.display = 'none';
+  copy_info.style.display = 'inline-block';
+  showInfo('');
 }
 
 function emailButton() {
@@ -427,11 +371,11 @@ function emailButton() {
     recognizing = false;
     recognition.stop();
   } else {
-   // createEmail();
+    createEmail();
   }
-  //email_button.style.display = 'none';
-  //email_info.style.display = 'inline-block';
-  //showInfo('');
+  email_button.style.display = 'none';
+  email_info.style.display = 'inline-block';
+  showInfo('');
 }
 
 function startButton(event) {
@@ -460,7 +404,7 @@ function showInfo(s) {
     }
     info.style.visibility = 'visible';
   } else {
-    //info.style.visibility = 'hidden';
+    info.style.visibility = 'hidden';
   }
 }
 

@@ -20,6 +20,7 @@
     <title>
       Medlughati demonstration
     </title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
     <link href="https://plus.google.com/100585555255542998765" rel="publisher">
     <link href="//www.google.com/images/icons/product/chrome-32.png" rel="icon" type="image/ico">
     <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel=
@@ -115,13 +116,13 @@ a.c1 {font-weight: normal;}
         <div id="container" style="display: flex">
             <div id="images_containers" padding=5px;>
                 <div>
-                    <img src="https://i1.wp.com/www.homenaturalcures.com/wp-content/uploads/Chest-pain.jpg" style="width:100px;height:60px;" id="image-1" margin=10px/>
+                    <img src="https://i1.wp.com/www.homenaturalcures.com/wp-content/uploads/Chest-pain.jpg" style="width:100px;height:60px;" id="image-1" class="doctor_images">
                 </div>
                 <div>
-                    <img src="https://i1.wp.com/www.homenaturalcures.com/wp-content/uploads/Chest-pain.jpg" style="width:100px;height:60px;" id="image-2" margin=10px/>
+                    <img src="https://i1.wp.com/www.homenaturalcures.com/wp-content/uploads/Chest-pain.jpg" style="width:100px;height:60px;" id="image-2" class="doctor_images">
                 </div>
                 <div>
-                    <img src="https://i1.wp.com/www.homenaturalcures.com/wp-content/uploads/Chest-pain.jpg" style="width:100px;height:60px;" id="image-3" margin=10px/>
+                    <img src="https://i1.wp.com/www.homenaturalcures.com/wp-content/uploads/Chest-pain.jpg" style="width:100px;height:60px;" id="image-3" class="doctor_images">
                 </div>
             </div>
             <div id="results_container">
@@ -214,7 +215,7 @@ a.c1 {font-weight: normal;}
 var langs =
 [
 
-  ['Arab' ,           ['ar-JO']],
+  ['Arab' ,           ['ar-SY']],
   ['English',         ['en-AU', 'Australia'],
                       ['en-CA', 'Canada'],
                       ['en-IN', 'India'],
@@ -342,17 +343,11 @@ showButtons('inline-block');
           method:"POST"
         , body: new URLSearchParams("input_text="+final_transcript+"&input_language=ar&output_language=en")
         }).then(function(response) {
-          console.log('HEY I GOT HERE');
           response.text().then(function (text) {
             // do something with the text response 
             console.log(text);
-              parsedText = JSON.parse(text)
-              var translationImages = extractImages(parsedText);
-              updateVisualImage(translationImages[0], "image-1");
-              updateVisualImage(translationImages[1], "image-2");
-              updateVisualImage(translationImages[2], "image-3");
-              var translationString = extractTranslation(parsedText);
-              document.getElementById("final_translation").innerHTML = translationString;
+            parsedText = JSON.parse(text)
+            process_response(parsedText);
           });
         })
 
@@ -370,6 +365,23 @@ showButtons('inline-block');
     }
   };
 }
+
+function process_response(parsedText){
+  var images = parsedText.translation.images;
+  
+  for (var i = 0; i < images.length; i++) {
+      console.log(images[i]);
+      $("#image-" +(1+i)).attr("src", images[i][0]);
+      $("#image-" +(1+i)).attr("src2", images[i][1]);
+      $(".doctor_images").click(function (event){
+        target = $(event.target);
+        console.log(target);
+        target.attr("src", target.attr("src2"));
+      });
+
+  }
+}
+
 
 function extractImages(response) {
   return response.translations.images;

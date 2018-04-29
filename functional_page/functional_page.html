@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
     <link href="css/reset.css" rel="stylesheet">
     <link href="css/functional_page.css" rel="stylesheet">
 
 </head>
 <body>
-<div class="Status-Bar---On-Dark">3:40 PM</div>
 
 <div class="Rectangle-3">
 <!-- png -->
@@ -17,11 +17,17 @@
 </div>
 <div class="Begin-Conversation">
 	
-	<div class="Date">3:40pm April 29th, 2018</div>
+	<div id="original_text">
+		<span class="Date" id="interim_span"></span><span class="Date" id="final_span"></span>
+	</div>
+
+	<div id="translated_text">
+		<span class="Date2" id="translated_span"></span>
+	</div>
 
 	<div class="logo">
-	<img src="images/logo_grey.png"
-	     class="logo2">
+		<img src="images/logo_grey.png"
+		     class="logo2">
 	</div>
 
 	<div class="check" onclick="startButton(event)">
@@ -38,21 +44,33 @@
 <div class="Rectangle-6">
 
 <div class="img-card-container">
-		<i class="up"></i>
+		<i class="up doctor_images"></i>
 	<div class="img-card">
+		<img src="https://www.transparenttextures.com/patterns/cream-pixels.png" id="image-1" style="
+    width: 200px;
+    height: 200px;
+" class="all_images">
 	</div>
 </div>
 
 <div class="img-card-container">
-		<i class="up"></i>
+		<i class="up doctor_images"></i>
 	<div class="img-card">
+		<img src="https://www.transparenttextures.com/patterns/cream-pixels.png" id="image-2" style="
+    width: 200px;
+    height: 200px;
+" class="all_images">
 	</div>
 
 </div>
 
 <div class="img-card-container">
-		<i class="up"></i>
+		<i class="up doctor_images"></i>
 	<div class="img-card">
+		<img src="https://www.transparenttextures.com/patterns/cream-pixels.png" id="image-3" style="
+    width: 200px;
+    height: 200px;
+" class="all_images">
 	</div>
 </div>
 
@@ -64,8 +82,7 @@
 <div id="results_container">
 
     <div id="results" style="min-width: 200px">
-      <span class="final" id="final_span"></span> <span class="interim" id=
-      "interim_span"></span>
+      <!-- <span class="final" id="final_span"></span> <span class="interim"></span> -->
     </div>
 </div>
 </body>
@@ -75,7 +92,7 @@
 var langs =
 [
 
-  ['Arab' ,           ['ar-JO']],
+  ['Arab' ,           ['ar-SY']],
 ];
 
 select_language.selectedIndex = 0;
@@ -164,10 +181,10 @@ showButtons('inline-block');
       upgrade();
       return;
     }
+     
     for (var i = event.resultIndex; i < event.results.length; ++i) {
       if (event.results[i].isFinal) {
         final_transcript += event.results[i][0].transcript;
-        console.log("out final" + final_transcript);
         
 //          fetch("http://localhost:8000/api/", {
 //          method:"POST"
@@ -183,34 +200,13 @@ showButtons('inline-block');
           method:"POST"
         , body: new URLSearchParams("input_text="+final_transcript+"&input_language=ar&output_language=en")
         }).then(function(response) {
-          console.log('HEY I GOT HERE');
           response.text().then(function (text) {
             // do something with the text response 
             console.log(text);
-              parsedText = JSON.parse(text)
-              var translationImages = extractImages(parsedText);
-              console.log(translationImages);
-              if (translationImages[0]){
-                updateVisualImage(translationImages[0][0], "image-1");
-                  console.log(translationImages[0][0])
-              } else {
-               updateVisualImage("", "image-1");
-            }
-              if (translationImages[1]){
-                  updateVisualImage(translationImages[1][0], "image-2");
-              } else {
-               updateVisualImage("", "image-2");
-            }
-              if (translationImages[2]){
-                updateVisualImage(translationImages[2][0], "image-3");
-              } else {
-               updateVisualImage("", "image-3");
-            }
-              var translationString = extractTranslation(parsedText);
-              document.getElementById("final_translation").innerHTML = translationString;
+            parsedText = JSON.parse(text)
+            process_response(parsedText);
           });
         })
-
       } else {
         interim_transcript += event.results[i][0].transcript;
         to_translate = interim_transcript;
@@ -224,6 +220,35 @@ showButtons('inline-block');
       showButtons('inline-block');
     }
   };
+}
+
+console.log($);
+
+function process_response(parsedText){
+  var images = parsedText.translation.images;
+  for (var i = 0; i < images.length; i++) {
+      console.log(images[i]);
+      $("#image-" +(1+i)).attr("src", images[i][0]);
+      $("#image-" +(1+i)).attr("src2", images[i][1]);
+      $(".doctor_images").click(function (event){
+      	$(".all_images").attr("src", "https://www.transparenttextures.com/patterns/cream-pixels.png")
+      	console.log("change");
+        target = $($($(event.target).next()).find('img')[0]);
+        console.log(target);
+        target.attr("src", target.attr("src2"));
+        // reset all images
+        
+      });
+  }
+
+	$("#translated_span").text(parsedText.translation.text);
+	// highlight
+
+	for (var i = 0; i < parsedText.translation.ranked; i++){
+		for (var j = 0; i < parsedText.translation.ranked; i++){
+			
+		}
+	}
 }
 
 function extractImages(response) {

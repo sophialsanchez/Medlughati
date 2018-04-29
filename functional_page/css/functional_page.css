@@ -38,13 +38,17 @@
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #738b98;
+  /*color: #738b98;*/
+  color: black;
 }
 
 .logo {
-	width:350px;
-	margin: 0 auto;
-	margin-top:830px;
+    width: 350px;
+    /* margin: 0 auto; */
+    /* margin-top: 830px; */
+    position: fixed;
+    top: 700px;
+    left: 330px;
 }
 
 .logo2 {
@@ -80,6 +84,40 @@ i {
 }
 
 .check {
-  float:right;
-  margin-right: 15px;
+  position: fixed;
+  left: 732px;
+  bottom: 300px;
+}
+
+#original_text {
+    position: fixed;
+    top: 10px;
+    left: 100px;
+}
+
+#translated_text{
+  position: fixed;
+  top: 250px;
+  /* text-align: center; */
+  width: 80%;
+  margin: 0 auto;
+  max-width: 700px;
+  left: 103px;
+}
+
+
+.Date2 {
+    margin-top: 20px;
+    height: 16px;
+    font-family: SanFranciscoText;
+    font-size: 100px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    /* color: #738b98; */
+    color: black;
+    width: 100%;
 }

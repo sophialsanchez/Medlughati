@@ -3,4 +3,4 @@ ipython
 rake-nltk
 nltk
 textblob
-
+django-cors-headers

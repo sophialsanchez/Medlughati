@@ -222,33 +222,39 @@ showButtons('inline-block');
   };
 }
 
-console.log($);
-
 function process_response(parsedText){
+  
   var images = parsedText.translation.images;
+  $(".all_images").attr("src", "https://www.transparenttextures.com/patterns/cream-pixels.png");
+
   for (var i = 0; i < images.length; i++) {
       console.log(images[i]);
       $("#image-" +(1+i)).attr("src", images[i][0]);
       $("#image-" +(1+i)).attr("src2", images[i][1]);
+      
+      console.log("change " + "#image-" +(1+i));
+
       $(".doctor_images").click(function (event){
-      	$(".all_images").attr("src", "https://www.transparenttextures.com/patterns/cream-pixels.png")
-      	console.log("change");
-        target = $($($(event.target).next()).find('img')[0]);
-        console.log(target);
-        target.attr("src", target.attr("src2"));
-        // reset all images
-        
+    	
+	      target = $($($(event.target).next()).find('img')[0]);
+	      console.log(target);
+	      target.attr("src", target.attr("src2"));
       });
   }
 
-	$("#translated_span").text(parsedText.translation.text);
-	// highlight
+	
+	
 
-	for (var i = 0; i < parsedText.translation.ranked; i++){
-		for (var j = 0; i < parsedText.translation.ranked; i++){
-			
+	// highlights
+	keywords = parsedText.translation.keywords.ranked;
+	for (var i = 0; i < keywords.length; i++){
+		for (var j = 0; j < keywords[i].length; j++){
+			console.log(keywords[i][j]);
+			parsedText.translation.text = parsedText.translation.text.replace(keywords[i][j], "<span class='red_text_2'>" + keywords[i][j] + "</span>");
 		}
 	}
+
+	$("#translated_span").html(parsedText.translation.text);
 }
 
 function extractImages(response) {
@@ -353,7 +359,7 @@ function startButton(event) {
   }
   final_transcript = '';
   //recognition.lang = select_dialect.value;
-  recognition.lang = "ar-JO";
+  recognition.lang = "ar-SY";
   recognition.start();
   ignore_onend = false;
   final_span.innerHTML = '';
